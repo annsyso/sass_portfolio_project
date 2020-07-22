@@ -1,0 +1,51 @@
+@mixin burgerNav {
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 3px;
+    background: set-text-color($primary-color);
+    @include transitionEase;
+
+}
+
+
+.menu-btn {
+    position: absolute;
+    z-index: 2;
+    right: 1rem;
+    top: 1rem;
+    height: 20px;
+    width: 30px;
+    cursor: pointer;
+    @include transitionEase;
+
+    &-burger {
+        @include burgerNav;
+        top: 0.5rem;
+
+        &::before {
+            content: '';
+            @include burgerNav;
+            top: -8px;
+        }
+
+        &::after {
+            content: '';
+            @include burgerNav;
+            top: 8px;
+        }
+
+        &.open {
+            transform: rotate(360deg);
+            background: transparent;
+
+            &::before {
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+
+            &::after {
+                transform: rotate(-45deg) translate(3px, -7px);
+            }
+        }
+    }
+}
